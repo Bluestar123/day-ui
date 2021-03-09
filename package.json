@@ -1,12 +1,17 @@
 {
   "name": "day-ui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "main": "dist/day-ui.umd.min.js",
+  "author": {
+    "name": "day-wang",
+    "email": "m17545127084@163.com"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -27,7 +32,7 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~3.9.3",
+    "typescript": "^3.9.9",
     "vue-jest": "^5.0.0-0"
   }
 }
