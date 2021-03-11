@@ -1,9 +1,9 @@
 <template>
   <button
     :class="[
-      'p-button',
-      type ? 'p-button--' + type : '',
-      buttonSize ? 'p-button--' + buttonSize : '',
+      'd-button',
+      type ? 'd-button--' + type : '',
+      buttonSize ? 'd-button--' + buttonSize : '',
       {
         'is-disabled': disabled,
         'is-loading': loading,
@@ -14,11 +14,11 @@
     ]"
     :disabled="disabled || loading"
     :autofocus="autofocus"
-    :type="buttonType"
+    :type="nativeType"
     @click="handleClick"
   >
-    <i v-if="loading" class="p-icon-loading"></i>
-    <i v-if="icon && !loading" :class="'p-icon-' + icon"></i>
+    <i v-if="loading" class="d-icon-loading"></i>
+    <i v-if="icon && !loading" :class="'d-icon-' + icon"></i>
     <span v-if="$slots.default"><slot></slot></span>
     <!--v-if="$slots.default" 防止span标签占位-->
   </button>
@@ -56,7 +56,7 @@ export default defineComponent({
       type: String,
       default: ''
     },
-    buttonType: {
+    nativeType: {
       type: String,
       default: 'button',
       validator: (val) => {
@@ -93,7 +93,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import '../../../styles/button.scss'
-</style>

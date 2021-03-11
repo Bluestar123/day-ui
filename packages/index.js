@@ -1,5 +1,7 @@
-import DButton from './button'
-const components = [DButton]
+import DButton from './DButton'
+import DTest from './DButton'
+import '../styles/index.scss'
+const components = [DButton, DTest]
 
 const defaultInstallOpt = {
   size: 'medium',
@@ -7,8 +9,6 @@ const defaultInstallOpt = {
 }
 
 const install = (app, options = {}) => {
-  console.log(app, 8)
-
   components.forEach(item => {
     app.component(item.name, item)
   })
@@ -25,4 +25,4 @@ export default {
   install
 }
 
-export { DButton }
+export { DButton, DTest }

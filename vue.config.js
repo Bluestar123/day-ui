@@ -1,59 +1,99 @@
 const path = require('path')
 const fs = require('fs')
+const join = path.join
 
-function resolve(filePath) {
-  return path.join(__dirname, filePath)
+function resolve(dir) {
+  return path.resolve(__dirname, dir)
 }
-const getEntries = dir => {
-  // 整理需要加载的文件， dir 为各组件所在的共同目录
-  let absolutionPath = path.resolve(dir)
-  // 读取第一层的子元素，就是每个组件的包文件名
-  let sonFiles = fs.readdirSync(absolutionPath)
-  let entries = {}
-  sonFiles.forEach(file => {
-    // 路径拼接，得到组件所在位置
-    let fileDirPath = path.join(absolutionPath, file)
-    if (fs.statSync(fileDirPath).isDirectory()) {
-      // 得到组件所在路径，继续拼接得到文件地址
-      let filePath = path.join(fileDirPath, 'index.js')
-      entries[file] = filePath
+
+function getEntries(path) {
+  let files = fs.readdirSync(resolve(path))
+  const entries = files.reduce((ret, item) => {
+    const itemPath = join(path, item)
+    const isDir = fs.statSync(itemPath).isDirectory()
+    if (isDir) {
+      ret[item] = resolve(join(itemPath, 'index.js'))
+    } else {
+      const [name] = item.split('.')
+      ret[name] = resolve(`${itemPath}`)
     }
-  })
+    return ret
+  }, {})
   return entries
 }
 
-module.exports = {
+const devConfig = {
   pages: {
     index: {
-      entry: 'example/main.js',
+      entry: 'examples/main.js',
       template: 'public/index.html',
       filename: 'index.html'
     }
   },
-  outputDir: 'lib',
   configureWebpack: {
-    entry: {
-      // 传入打包文件所在目录，通过函数获取一个对象，获取所有组件入口
-      ...getEntries('./packages')
-    },
-    output: {
-      // 使用babel-plugin-import 实现按需导入
-      filename: 'd-[name]/index.js',
-      libraryTarget: 'umd',
-      libraryExport: 'default',
-      library: 'day-ui'
-    }
-  },
-  css: {
-    sourceMap: true, // 源码映射,
-    extract: {
-      filename: 'd-[name]/style.css'
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': resolve('packages'),
+        assets: resolve('examples/assets'),
+        views: resolve('examples/views')
+      }
     }
   },
   chainWebpack: config => {
-    config.resolve.alias
-      .set('packages', resolve('packages'))
-      .set('comp', resolve('src/components'))
-      .set('style', resolve('styles'))
+    config.module
+      .rule('js')
+      .include.add('/packages')
+      .end()
   }
 }
+
+const buildConfig = {
+  outputDir: 'lib',
+  productionSourceMap: false,
+  configureWebpack: {
+    entry: {
+      ...getEntries('packages')
+    },
+    output: {
+      filename: '[name]/index.js',
+      libraryTarget: 'commonjs2'
+    }
+  },
+  css: {
+    sourceMap: true,
+    extract: {
+      filename: 'style/[name].css' //在lib文件夹中建立style文件夹中，生成对应的css文件。
+    }
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('js')
+      .include.add('/packages')
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap(options => {
+        return options
+      })
+
+    config.optimization.delete('splitChunks')
+    config.plugins.delete('copy')
+    config.plugins.delete('html')
+    config.plugins.delete('preload')
+    config.plugins.delete('prefetch')
+    config.plugins.delete('hmr')
+    config.entryPoints.delete('app')
+
+    config.module
+      .rule('fonts')
+      .use('url-loader')
+      .tap(option => {
+        option.fallback.options.name = 'static/fonts/[name].[hash:8].[ext]'
+        return option
+      })
+  }
+}
+
+module.exports =
+  process.env.NODE_ENV === 'development' ? devConfig : buildConfig

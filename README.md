@@ -12,7 +12,7 @@ npm install -S day-ui
 
 ```
 import DayUI from 'day-ui'
-import 'day-ui/dist/day-ui.css'
+import 'day-ui/lib/style/index.css'
 
 createApp(App).use(DayUI)
 ```
