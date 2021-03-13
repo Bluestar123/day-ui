@@ -1,15 +1,14 @@
 <template>
-  <div class="">我是组件test</div>
+  <i :class="`d-icon-${name}`"></i>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'DTest',
-  components: {},
-  setup() {
-    return {}
+  name: 'DIcon',
+  props: {
+    name: String
   }
 })
 </script>
