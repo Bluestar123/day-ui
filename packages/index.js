@@ -1,6 +1,6 @@
-import DButton from './DButton'
-import DButtonGroup from './d-button-group'
-import DIcon from './DIcon'
+import DButton from './button'
+import DButtonGroup from './button-group'
+import DIcon from './icon'
 import '../styles/index.scss'
 const components = [DButton, DIcon, DButtonGroup]
 

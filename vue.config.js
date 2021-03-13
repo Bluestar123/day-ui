@@ -56,14 +56,14 @@ const buildConfig = {
       ...getEntries('packages')
     },
     output: {
-      filename: '[name]/index.js',
+      filename: 'd-[name]/index.js',
       libraryTarget: 'commonjs2'
     }
   },
   css: {
     sourceMap: true,
     extract: {
-      filename: 'style/[name].css' //在lib文件夹中建立style文件夹中，生成对应的css文件。
+      filename: 'style/d-[name].css' //在lib文件夹中建立style文件夹中，生成对应的css文件。
     }
   },
   chainWebpack: config => {
