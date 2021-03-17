@@ -34,7 +34,7 @@ const devConfig = {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
       alias: {
-        '@': resolve('packages'),
+        packages: resolve('packages'),
         assets: resolve('examples/assets'),
         views: resolve('examples/views')
       }
