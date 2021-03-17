@@ -6,9 +6,11 @@
     <d-button>123</d-button>
     <d-button>456</d-button>
   </d-button-group>
-  <d-affix :offset="120" :position="'bottom'">
+  <!-- <div class="affix-container" style="width: 500px; height: 300px"> -->
+  <d-affix :offset="120">
     <d-button>affix</d-button>
   </d-affix>
+  <!-- </div> -->
   <p>
     <d-button>456</d-button>
   </p>
@@ -117,6 +119,9 @@
   <p>
     <d-button>456</d-button>
   </p>
+  <d-affix position="bottom" :offset="120">
+    <d-button>affix</d-button>
+  </d-affix>
   <p>
     <d-button>456</d-button>
   </p>
