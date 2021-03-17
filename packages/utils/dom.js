@@ -48,7 +48,7 @@ export const isScroll = (el, isVertical) => {
     ? getStyle(el, 'overflow-y')
     : getStyle(el, 'overflow-x')
 
-  return overflow.match(/scroll|auto/)
+  return overflow.match(/(scroll|auto)/)
 }
 
 /**

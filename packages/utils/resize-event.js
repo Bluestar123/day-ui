@@ -1,5 +1,5 @@
-import isServer from './isServer'
 import ResizeObserver from 'resize-observer-polyfill'
+import isServer from './isServer'
 
 const resizeHandler = function(entries) {
   for (const entry of entries) {
@@ -9,7 +9,7 @@ const resizeHandler = function(entries) {
         Element's size: ${ width }px x ${ height }px`
         Element's paddings: ${ top }px ; ${ left }px`
      */
-    const listeners = entry.__resizeListeners__ || []
+    const listeners = entry.target.__resizeListeners__ || []
     if (listeners.length) {
       listeners.forEach(fn => fn())
     }
