@@ -115,7 +115,6 @@ export default defineComponent({
             state.clientHeight > targetRect.top
           state.transform = difference < 0 ? -difference : 0
         } else {
-          console.log(state.clientHeight - props.offset, rootRect.bottom)
           state.fixed = state.clientHeight - props.offset < rootRect.bottom
         }
       }

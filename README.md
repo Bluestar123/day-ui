@@ -18,3 +18,5 @@ createApp(App).use(DayUI)
 ```
 
 > 用法可查看 example 目录
+
+[文档地址](https://bluestar123.github.io/day-ui-docs/)

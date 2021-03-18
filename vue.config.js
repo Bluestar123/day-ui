@@ -9,6 +9,7 @@ function resolve(dir) {
 function getEntries(path) {
   let files = fs.readdirSync(resolve(path))
   const entries = files.reduce((ret, item) => {
+    if (item == 'utils') return ret
     const itemPath = join(path, item)
     const isDir = fs.statSync(itemPath).isDirectory()
     if (isDir) {
@@ -58,6 +59,11 @@ const buildConfig = {
     output: {
       filename: 'd-[name]/index.js',
       libraryTarget: 'commonjs2'
+    },
+    resolve: {
+      alias: {
+        packages: resolve('packages')
+      }
     }
   },
   css: {
@@ -89,7 +95,7 @@ const buildConfig = {
       .rule('fonts')
       .use('url-loader')
       .tap(option => {
-        option.fallback.options.name = 'static/fonts/[name].[hash:8].[ext]'
+        option.fallback.options.name = 'static/fonts/[name].[ext]'
         return option
       })
   }

@@ -1,6 +1,6 @@
 {
   "name": "day-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "lib/day-ui.umd.min.js",
   "author": {
     "name": "daywang",
@@ -23,7 +23,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib packages/index.js && vue-cli-service build --day --no-clean"
+    "lib": "vue-cli-service build --target lib packages/index.js && vue-cli-service build --no-clean"
   },
   "dependencies": {
     "core-js": "^3.6.5",
