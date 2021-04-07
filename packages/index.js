@@ -15,7 +15,7 @@ const install = (app, options = {}) => {
     app.component(item.name, item)
   })
 
-  app.config.globalProperties.$PEACE = Object.assign(
+  app.config.globalProperties.$DAY = Object.assign(
     {},
     defaultInstallOpt,
     options
