@@ -64,7 +64,16 @@ const buildConfig = {
       alias: {
         packages: resolve('packages')
       }
-    }
+    },
+    externals: [
+      {
+        vue: {
+          root: 'Vue',
+          commonjs: 'vue',
+          commonjs2: 'vue'
+        }
+      }
+    ]
   },
   css: {
     sourceMap: true,
