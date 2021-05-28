@@ -19,7 +19,11 @@ export const getStyle = function(element, styleName) {
   if (!element || !styleName) return null
   styleName = camelize(styleName)
   if (styleName === 'float') {
-    styleName = 'cssFloat'
+    /**
+     * ie6~8下：style.styleFloat
+        FF/chrome 以及ie9以上：style.cssFloat
+     */
+    styleName = 'cssFloat' // FF/chrome 以及ie9以上   float兼容性写法
   }
   try {
     const style = element.style[styleName]

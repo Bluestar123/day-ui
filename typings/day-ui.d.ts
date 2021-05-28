@@ -8,6 +8,7 @@ import {
 export { DButton } from './button'
 export { DButtonGroup } from './button-group'
 export { DIcon } from './icon'
+export { DAffix } from './affix'
 
 export interface InstallationOptions {
   locale: any

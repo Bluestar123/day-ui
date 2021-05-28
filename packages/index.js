@@ -2,8 +2,9 @@ import DButton from './button'
 import DButtonGroup from './button-group'
 import DIcon from './icon'
 import DAffix from './affix'
+import DAlert from './alert'
 import '../styles/index.scss'
-const components = [DButton, DIcon, DButtonGroup, DAffix]
+const components = [DButton, DIcon, DButtonGroup, DAffix, DAlert]
 
 const defaultInstallOpt = {
   size: 'medium',
@@ -27,4 +28,4 @@ export default {
   install
 }
 
-export { DButton, DIcon, DButtonGroup, DAffix }
+export { DButton, DIcon, DButtonGroup, DAffix, DAlert }

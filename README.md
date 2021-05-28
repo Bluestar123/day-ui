@@ -20,3 +20,12 @@ createApp(App).use(DayUI)
 > 用法可查看 example 目录
 
 [文档地址](https://bluestar123.github.io/day-ui-docs/)
+
+## 文章学习
+
+[掘金](https://juejin.cn/user/3122268752839533/posts)
+[腾讯云社区](https://cloud.tencent.com/developer/user/6117124)
+
+## 联系作者
+
+![](https://static-6e274940-2377-4243-9afa-b5a56b9ff767.bspapp.com/image/profile_wx.jpg)
